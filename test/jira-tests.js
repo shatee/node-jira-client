@@ -931,6 +931,21 @@ describe('Jira API Tests', () => {
         result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/filter/someFilterId');
       });
 
+      it('createFilter hits proper url', async () => {
+        const result = await dummyURLCall('createFilter');
+        result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/filter');
+      });
+
+      it('editFilter hits proper url', async () => {
+        const result = await dummyURLCall('editFilter', ['someFilterId']);
+        result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/filter/someFilterId');
+      });
+
+      it('deleteFilter hits proper url', async () => {
+        const result = await dummyURLCall('deleteFilter', ['someFilterId']);
+        result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/filter/someFilterId');
+      });
+
       it('getEpics hits proper url', async () => {
         const result = await dummyURLCall('getEpics', ['someBoardId']);
         result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/board/someBoardId/epic?startAt=0&maxResults=50&done=');

@@ -1960,11 +1960,65 @@ export default class JiraApi {
    * @function
    * @param {string} filterId - Id of filter to retrieve
    */
-
   getFilter(filterId) {
     return this.doRequest(this.makeRequestHeader(this.makeAgileUri({
       pathname: `/filter/${filterId}`,
     })));
+  }
+
+  /** Create Filter
+   * [Jira Doc](https://docs.atlassian.com/software/jira/docs/api/REST/7.6.1/#api/2/filter-createFilter)
+   * @name createFilter
+   * @function
+   * @param {object} expand - the parameters to expand
+   * @param {string} expand.name
+   * @param {string} expand.description
+   * @param {string} expand.jql
+   * @param {boolean} expand.favourite
+   */
+  createFilter(expand) {
+    return this.doRequest(this.makeRequestHeader(this.makeAgileUri({
+      pathname: '/filter',
+    }),
+    {
+      method: 'POST',
+      body: expand,
+    }));
+  }
+
+  /** Edit Filter
+   * [Jira Doc](https://docs.atlassian.com/software/jira/docs/api/REST/7.6.1/#api/2/filter-editFilter)
+   * @name createFilter
+   * @function
+   * @param {string} filterId - Id of filter to retrieve
+   * @param {object} expand - the parameters to expand
+   * @param {string} expand.name
+   * @param {string} expand.description
+   * @param {string} expand.jql
+   * @param {boolean} expand.favourite
+   */
+  editFilter(filterId, expand) {
+    return this.doRequest(this.makeRequestHeader(this.makeAgileUri({
+      pathname: `/filter/${filterId}`,
+    }),
+    {
+      method: 'PUT',
+      body: expand,
+    }));
+  }
+
+  /** Delete Filter
+   * [Jira Doc](https://docs.atlassian.com/software/jira/docs/api/REST/7.6.1/#api/2/filter-deleteFilter)
+   * @name getFilter
+   * @function
+   * @param {string} filterId - Id of filter to retrieve
+   */
+  deleteFilter(filterId) {
+    return this.doRequest(this.makeRequestHeader(this.makeAgileUri({
+      pathname: `/filter/${filterId}`,
+    }), {
+      method: 'DELETE',
+    }));
   }
 
   /** Get Epic
