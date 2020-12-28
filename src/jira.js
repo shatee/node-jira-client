@@ -2025,6 +2025,41 @@ export default class JiraApi {
     }));
   }
 
+  /** Add share permission
+   * [Jira Doc](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-filter-sharing/#api-rest-api-2-filter-id-permission-post)
+   * @name addSharePermission
+   * @function
+   * @param {number} filterId - The ID of the filter.
+   * @param {string} type - The type of the share permission.Specify the type as follows:
+   *   * group Share with a group. Specify groupname as well.
+   *   * project Share with a project. Specify projectId as well.
+   *   * projectRole Share with a project role in a project.
+   *     Specify projectId and projectRoleId as well.
+   *   * global Share globally, including anonymous users.
+   *     If set, this type overrides all existing share permissions and must be deleted before any
+   *     non-global share permissions is set.
+   *   * authenticated Share with all logged-in users.
+   *     This shows as loggedin in the response. If set, this type overrides all existing share
+   *     permissions and must be deleted before any non-global share permissions is set.
+   *   * Valid values: project, group, projectRole, global, authenticated
+   * @param {Object?} option
+   * @param {string} option.projectId
+   * @param {string} option.groupname
+   * @param {string} option.projectRoleId
+   * @return {Promise<*>}
+   */
+  addSharePermission(filterId, type, option = {}) {
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
+      pathname: `/filter/${filterId}/permission`,
+    }), {
+      method: 'POST',
+      body: {
+        type,
+        ...option,
+      },
+    }));
+  }
+
   /** Get Epic
    * [Jira Doc](https://docs.atlassian.com/jira-software/REST/cloud/#agile/1.0/epic-getEpic)
    * @name getEpic
