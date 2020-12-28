@@ -1975,7 +1975,7 @@ export default class JiraApi {
    * @param {string?} filter.description - A description of the filter.
    * @param {string?} filter.jql - The JQL query for the filter.
    * @param {boolean?} filter.favourite - Whether the filter is selected as a favorite.
-   * @param {string[]?} filter.sharePermissions -
+   * @param {object[]} filter.sharePermissions -
    *   The groups and projects that the filter is shared with.
    */
   createFilter(filter) {
@@ -1998,7 +1998,7 @@ export default class JiraApi {
    * @param {string?} filter.description - A description of the filter.
    * @param {string?} filter.jql - The JQL query for the filter.
    * @param {boolean?} filter.favourite - Whether the filter is selected as a favorite.
-   * @param {string[]?} filter.sharePermissions -
+   * @param {object[]} filter.sharePermissions -
    *   The groups and projects that the filter is shared with.
    */
   updateFilter(filterId, filter) {
