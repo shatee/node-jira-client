@@ -928,22 +928,22 @@ describe('Jira API Tests', () => {
 
       it('getFilter hits proper url', async () => {
         const result = await dummyURLCall('getFilter', ['someFilterId']);
-        result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/filter/someFilterId');
+        result.should.eql('http://jira.somehost.com:8080/rest/api/2.0/filter/someFilterId');
       });
 
       it('createFilter hits proper url', async () => {
         const result = await dummyURLCall('createFilter');
-        result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/filter');
+        result.should.eql('http://jira.somehost.com:8080/rest/api/2.0/filter');
       });
 
-      it('editFilter hits proper url', async () => {
-        const result = await dummyURLCall('editFilter', ['someFilterId']);
-        result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/filter/someFilterId');
+      it('updateFilter hits proper url', async () => {
+        const result = await dummyURLCall('updateFilter', ['someFilterId']);
+        result.should.eql('http://jira.somehost.com:8080/rest/api/2.0/filter/someFilterId');
       });
 
       it('deleteFilter hits proper url', async () => {
         const result = await dummyURLCall('deleteFilter', ['someFilterId']);
-        result.should.eql('http://jira.somehost.com:8080/rest/agile/1.0/filter/someFilterId');
+        result.should.eql('http://jira.somehost.com:8080/rest/api/2.0/filter/someFilterId');
       });
 
       it('getEpics hits proper url', async () => {

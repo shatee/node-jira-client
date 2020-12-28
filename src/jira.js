@@ -1955,66 +1955,66 @@ export default class JiraApi {
   }
 
   /** Get Filter
-   * [Jira Doc](https://docs.atlassian.com/jira-software/REST/cloud/#agile/1.0/filter)
+   * [Jira Doc](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-filters/#api-rest-api-2-filter-id-get)
    * @name getFilter
    * @function
-   * @param {string} filterId - Id of filter to retrieve
+   * @param {number} filterId - The ID of the filter to return.
    */
   getFilter(filterId) {
-    return this.doRequest(this.makeRequestHeader(this.makeAgileUri({
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
       pathname: `/filter/${filterId}`,
     })));
   }
 
   /** Create Filter
-   * [Jira Doc](https://docs.atlassian.com/software/jira/docs/api/REST/7.6.1/#api/2/filter-createFilter)
+   * [Jira Doc](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-filters/#api-rest-api-2-filter-post)
    * @name createFilter
    * @function
-   * @param {object} expand - the parameters to expand
-   * @param {string} expand.name
-   * @param {string} expand.description
-   * @param {string} expand.jql
-   * @param {boolean} expand.favourite
+   * @param {object} filter
+   * @param {string} filter.name - The name of the filter. Must be unique.
+   * @param {string?} filter.description - A description of the filter.
+   * @param {string?} filter.jql - The JQL query for the filter.
+   * @param {boolean?} filter.favourite - Whether the filter is selected as a favorite.
    */
-  createFilter(expand) {
-    return this.doRequest(this.makeRequestHeader(this.makeAgileUri({
+  createFilter(filter) {
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
       pathname: '/filter',
     }),
     {
       method: 'POST',
-      body: expand,
+      body: filter,
     }));
   }
 
-  /** Edit Filter
-   * [Jira Doc](https://docs.atlassian.com/software/jira/docs/api/REST/7.6.1/#api/2/filter-editFilter)
-   * @name createFilter
+  /** Update Filter
+   * [Jira Doc](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-filters/#api-rest-api-2-filter-id-put)
+   * @name updateFilter
    * @function
-   * @param {string} filterId - Id of filter to retrieve
-   * @param {object} expand - the parameters to expand
-   * @param {string} expand.name
-   * @param {string} expand.description
-   * @param {string} expand.jql
-   * @param {boolean} expand.favourite
+   * @param {number} filterId - The ID of the filter to update.
+   * @param {object} filter
+   * @param {string} filter.name - The name of the filter. Must be unique.
+   * @param {string?} filter.description - A description of the filter.
+   * @param {string?} filter.jql - The JQL query for the filter.
+   * @param {boolean?} filter.favourite - Whether the filter is selected as a favorite.
    */
-  editFilter(filterId, expand) {
-    return this.doRequest(this.makeRequestHeader(this.makeAgileUri({
+  updateFilter(filterId, filter) {
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
       pathname: `/filter/${filterId}`,
     }),
     {
       method: 'PUT',
-      body: expand,
+      body: filter,
     }));
   }
 
   /** Delete Filter
-   * [Jira Doc](https://docs.atlassian.com/software/jira/docs/api/REST/7.6.1/#api/2/filter-deleteFilter)
-   * @name getFilter
+   * [Jira Doc](https://developer.atlassian.com/cloud/jira/platform/rest/v2/api-group-filters/#api-rest-api-2-filter-id-delete)
+   * @name deleteFilter
    * @function
-   * @param {string} filterId - Id of filter to retrieve
+   * @param {number} filterId - The ID of the filter to delete.
    */
   deleteFilter(filterId) {
-    return this.doRequest(this.makeRequestHeader(this.makeAgileUri({
+    return this.doRequest(this.makeRequestHeader(this.makeUri({
       pathname: `/filter/${filterId}`,
     }), {
       method: 'DELETE',
